@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="global.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+   
+</head>
+<body>
+    <div class="center-a-div">
+        <div class="flex-col favourites-container">
+            <div id="favourite-heading">
+                 Your Favourites
+            </div>
+            <div class="favourites">
+
+            </div>
+              
+          </div>
+        <div class="basic-UI-wrapper">
+            
+            <div class="search-wrapper">
+                <input id="query-string" type="text" value="" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+                <button id="search-button" >Search</button>
+                
+            </div>
+            <div class="card" hidden="true">
+                <div id="like-container" >
+                    <i class="material-icons" id="like-button">favorite</i>
+                </div>
+                <img id="card-image">
+                
+                    <div id="card-title"></div>
+                    
+              
+                
+                <div id="more-details">
+                    <div id="card-release-year"></div>
+                    <div id="view-details"></div>
+                </div>
+                
+
+            </div>
+            <div id="logs" hidden="true">
+
+            </div>
+            <div id="modal" hidden="true">
+                <button id="close-modal-button">X</button>
+                <div id="modal-content">
+                    Modal Content
+                </div>
+            </div>
+        </div>
+       
+            
+        
+        
+      </div>
+    <script src="script.js"></script>
+</body>
+</html>
