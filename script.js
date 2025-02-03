@@ -18,6 +18,8 @@ const favouriteContent = document.querySelector(".favourites");
 const queryString=document.querySelector("#query-string");
 const searchButton=document.querySelector("#search-button");
 const favouriteHeading=document.querySelector('#favourite-heading');
+const modeButton=document.querySelector("#mode");
+const websiteTitle=document.querySelector("#title1");
 
 const fetchMovie=async(str)=>{
     
@@ -57,7 +59,7 @@ const fetchMovie=async(str)=>{
     
         const title=document.querySelector("#card-title").innerText;
         let currList = JSON.parse(localStorage.getItem("favourites")) || [];
-        currList.includes(title)===true?likeButton.style.color="red":likeButton.style.color = "white"; 
+        currList.includes(title)===true?likeButton.style.color="#FAD5A5":likeButton.style.color = "white"; 
     
         console.log(data);
         
@@ -77,8 +79,20 @@ const fetchMovie=async(str)=>{
 
 }
 
+const title1 = document.getElementById('title1');
+const title2 = document.getElementById('title2');
 
 
+title1.addEventListener('mouseover', () => {
+    title1.style.color = "#FAD5A5";
+    title2.style.color = "#EEEEEE"; 
+});
+
+// Hover out event
+title1.addEventListener('mouseout', () => {
+    title1.style.color = '#EEEEEE'; 
+    title2.style.color = '#FAD5A5'; 
+});
 searchButton.addEventListener("click",()=>{
    
    
@@ -102,14 +116,18 @@ viewDetailsButton.addEventListener("click",()=>{
     modalElement.display="flex";
     modalElement.flexDirection="row";
     
-
-    
-   
+    setTimeout(() => {
+       
+        modalElement.style.transform = "scale(1)";
+    }, 10);
 });
 closeModalButton.addEventListener("click",()=>{
     
-    modalElement.hidden=true;
-    modalElement.display="none";
+    
+    modalElement.style.transform = "scale(0.9)";
+    setTimeout(() => {
+        modalElement.hidden=true;
+    }, 300); 
     card.hidden=false;
     
 })
@@ -123,7 +141,7 @@ likeButton.addEventListener("click",()=>{
         currList.push(title);
    
         localStorage.setItem("favourites", JSON.stringify(currList));
-        likeButton.style.color="red";
+        likeButton.style.color="#FAD5A5";
         console.log(`liked ${title}`);
         populateFavourites();
         
