@@ -15,29 +15,39 @@
                 <p id="title1">Movie<span id="title2">Flix</span></p>
             </div>
             <div class="search-wrapper">
-                <input id="query-string" type="text" value="" placeholder="Search for titles here" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+                <input id="query-string" type="text" value="" placeholder="Search for titles here" onkeyup="findMovies()" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
                 <button id="search-button" >Search</button>
                 <i class="material-icons" id="my-favourites">favorite</i>
-                
+                <div class="search-list" hidden=true>
+                    <!-- <div class="search-list-item">
+                        <img class="search-list-item-img" src="movie-thumbnail.jpg" alt="Movie">
+                        <span>Movie Title</span>
+                    </div> -->
+                    
+                </div>
+
             </div>
+            
         </div>
        
-       
-         
-            <div class="card" hidden="true">
-                <div id="like-container" >
-                    <i class="material-icons" id="like-button">favorite</i>
-                </div>
-                <img id="card-image">
-                
-                    <div id="card-title"></div>
+        <div class="content">
+            <div class="search-results">
+                <div class="card" hidden="true">
+                    <div id="like-container" >
+                        <i class="material-icons" id="like-button">favorite</i>
+                    </div>
+                    <img id="card-image">
                     
-              
-                
-                <div id="more-details">
-                    <div id="card-release-year"></div>
-                    <div id="view-details"></div>
-                </div>
+                        <div id="card-title"></div>
+                        
+                  
+                    
+                    <div id="more-details">
+                        <div id="card-release-year"></div>
+                        <div id="view-details"></div>
+                    </div>
+            </div>
+            
                 
 
             </div>
@@ -50,7 +60,7 @@
                     Modal Content
                 </div>
             </div>
-             <div class="flex-col favourites-container">
+             <!-- <div class="flex-col favourites-container">
                 <div id="favourite-heading">
                      Your Favourites
                 </div>
@@ -58,7 +68,13 @@
     
                 </div>
             </div> 
+             -->
         </div>
+        </div>
+
+         
+            
+        
          
               
        
