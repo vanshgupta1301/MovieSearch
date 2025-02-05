@@ -78,10 +78,7 @@ const loadMovies=async(searchTerm)=>{
             console.log(data);
         }
         else{
-            contentDiv.hidden=true;
-            
-            logs.hidden=false;
-            logs.innerText=data.Error;
+            console.log(data.Error);
         }
     }
    catch(e){
@@ -135,14 +132,17 @@ const displayMovieList = (movies) => {
             </div>
         `:cardHTML=`
         <div class="movie-card">
-            <div class="details-btn-container">
-            <i class=" material-icons details-btn " onclick="viewDetailsButton('${movie.imdbID}')">info</i>
-            </div>
+            <div class="movie-card-header">
+                    <div class="details-btn-container">
+                    <i class=" material-icons details-btn " onclick="viewDetailsButton('${movie.imdbID}')">info</i>
+                    </div>
             
                    <div id="like-container" >
                        <i class="material-icons like-button white-color" id="${movie.imdbID}" onclick="likeButton('${movie.imdbID}' ,this)">favorite</i>
 
                     </div>
+            </div>
+            
                 <img class="movie-card-img" src="${moviePoster}" alt="Movie Poster">
                 <div class="movie-card-info">
                         
@@ -163,7 +163,23 @@ const displayMovieList = (movies) => {
     contentDiv.appendChild(movieGrid);
 };
 
-
+searchButton.addEventListener("click",()=>{
+    
+        let searchTerm=(queryString.value).trim();
+   
+     if(!searchTerm || searchTerm.length===0){
+        console.log("No Titles match the description");
+        
+     }
+     if(searchTerm.length>0){
+        
+            loadMovies(searchTerm);
+       
+        
+        
+     }
+    
+})
 
 const title1 = document.getElementById('title1');
 const title2 = document.getElementById('title2');
