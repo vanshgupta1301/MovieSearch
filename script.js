@@ -24,9 +24,15 @@ const searchButton=document.querySelector("#search-button");
 const contentDiv = document.querySelector(".content");
 const favouritesList=document.querySelector(".favourites-list");
 
-
+const mobileTray=document.querySelector(".mobile-tray");
 const grid=document.querySelector(".grid");
 const populateFavourites=async()=>{
+    try {
+        
+    } catch (error) {
+        console.log(error.Error);
+        
+    }
     const arr = JSON.parse(localStorage.getItem("favourites")) || [];
     
     favouritesList.innerHTML="";
@@ -113,12 +119,16 @@ const displayMovieList = (movies) => {
         cardHTML=`
             <div class="movie-card">
             
-            <i class=" material-icons details-btn " onclick="viewDetailsButton('${movie.imdbID}')">info</i>
+              <div class="movie-card-header">
+                    
+                    <i class=" material-icons details-btn " onclick="viewDetailsButton('${movie.imdbID}')">info</i>
+                    
             
-            
-                   
+                 
                        <i class="material-icons like-button yellow-color" id="${movie.imdbID}" onclick="likeButton('${movie.imdbID}' ,this)">favorite</i>
 
+                    
+              </div>
                     
                 <img class="movie-card-img" src="${moviePoster}" alt="Movie Poster">
                 <div class="movie-card-info">
@@ -232,16 +242,6 @@ const viewDetailsButton = async (movieID) => {
     }
 };
 
-closeModalButton.addEventListener("click",()=>{
-    
-    
-    modalElement.style.transform = "scale(0.9)";
-    setTimeout(() => {
-        modalElement.hidden=true;
-    }, 300); 
-   
-    
-})
 
 const likeButton = (movieID, buttonElement) => {
     let currList = JSON.parse(localStorage.getItem("favourites")) || [];
@@ -250,11 +250,14 @@ const likeButton = (movieID, buttonElement) => {
         currList.push(movieID);
         localStorage.setItem("favourites", JSON.stringify(currList));
         buttonElement.style.color = "#FAD5A5";  
+        buttonElement.style.transform="scale(1.1)"
+        buttonElement.style.transition="0.3s ease-in-out";
         populateFavourites();
     } else {
         currList = currList.filter(item => item !== movieID);
         localStorage.setItem("favourites", JSON.stringify(currList));
         buttonElement.style.color = "white";  
+        buttonElement.style.transition="0.3s ease-in-out";
         populateFavourites();
     }
 };
@@ -289,4 +292,11 @@ wholeViewport.addEventListener("click",()=>{
 
 document.addEventListener("DOMContentLoaded",()=>{
     findMovies();
+})
+
+const menubar=document.querySelector("#menu");
+mobileTray.addEventListener("click",()=>{
+
+    
+    menubar.hidden=false;
 })
