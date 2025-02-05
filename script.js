@@ -239,10 +239,13 @@ const viewDetailsButton = async (movieID) => {
 
             modalElement.hidden = false; 
 
-      
-            document.getElementById("close-modal-button").addEventListener("click", () => {
-                modalElement.hidden = true;
-            });
+            const closeModalButton=document.getElementById("close-modal-button")
+            if(closeModalButton){
+                closeModalButton.addEventListener("click", () => {
+                    modalElement.hidden = true;
+                });
+            }
+            
         } else {
             console.error("Movie details not found:", data.Error);
         }
@@ -258,7 +261,7 @@ closeModalButton.addEventListener("click",()=>{
     setTimeout(() => {
         modalElement.hidden=true;
     }, 300); 
-    card.hidden=false;
+   
     
 })
 
