@@ -15,12 +15,7 @@
     
     
 }
-.yellow-color{
-    color: var(--title-yellow);
-}
-.white-color{
-    color:var(--text-color);
-}
+
 
 .title{
     padding: 1rem 0;
@@ -212,8 +207,8 @@ body {
     cursor: pointer;
 }
 
-#like-button {
-    color: var(--title-yellow);
+.like-button {
+   
     
     cursor: pointer;
     transition: transform 0.3s cubic-bezier(0.075, 0.82, 0.165, 1);
@@ -225,18 +220,19 @@ body {
 }
 
 #modal {
+    
     justify-content: center;
     align-items: center;
     z-index: 1;
     overflow: auto;
     width: 50vw;
     height: 45vh;
-    background-color: var(--text-color);
+    background-color: var(--my-second-favourite-hex);
     opacity: 1;
     position: fixed;
-    border-radius: 0.375rem;
+    border-radius: 0.5rem;
     overflow-y: scroll;
-
+    color:var(--text-color);
     transform: scale(0.9);
     transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
 
@@ -244,6 +240,7 @@ body {
     
 }
 #modal.show {
+    
     opacity: 1;
     transform: scale(1);
     visibility: visible;
@@ -448,20 +445,28 @@ body {
 }
 
 .movie-card-info {
-    margin-top: 10px;
+    height: 10vh;
+    
 }
 
 
 
 .details-btn {
-    background-color: #fad5a5;
-    color: black;
+    background-color: var(--my-favourite-hex);
+    align-items: right;
+    color: var(--title-yellow);
     border: none;
-    padding: 8px 12px;
-    
+    padding: 2px 2px;
+    justify-content: right;
     cursor: pointer;
     border-radius: 5px;
     transition: background-color 0.3s;
+}
+.details-btn-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: flex-end;
 }
 
 .details-btn:hover {
@@ -580,4 +585,10 @@ body {
         padding: 6px 10px;
         font-size: 0.9rem;
     }
+}
+.yellow-color{
+    color: var(--title-yellow);
+}
+.white-color{
+    color:var(--text-color);
 }

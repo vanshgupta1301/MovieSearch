@@ -3,13 +3,14 @@
 // let favourites = JSON.parse(localStorage.getItem("favourites")) || [];
 
 const logs=document.querySelector("#logs");
-const card=document.querySelector(".card");
-const cardImage=document.querySelector("#card-image");
-const cardTitle=document.querySelector("#card-title");
-const cardReleaseYear=document.querySelector("#card-release-year");
+
+// const card=document.querySelector(".card");
+// const cardImage=document.querySelector("#card-image");
+// const cardTitle=document.querySelector("#card-title");
+// const cardReleaseYear=document.querySelector("#card-release-year");
 const cardViewDetails=document.querySelector("#view-details");
 const modalContent=document.querySelector("#modal-content");
-const cardContainer=document.querySelector(".card");
+// const cardContainer=document.querySelector(".card");
 // const viewDetailsButton=document.querySelector("#view-details")
 const modalElement=document.querySelector("#modal");
 const closeModalButton=document.querySelector("#close-modal-button");
@@ -23,66 +24,8 @@ const searchButton=document.querySelector("#search-button");
 const contentDiv = document.querySelector(".content");
 const favouritesList=document.querySelector(".favourites-list");
 
-// const fetchMovie=async(str)=>{
-    
-//     logs.innerText="";
-//     logs.hidden=true;
-    
-           
-            
 
-//     try{
-//         console.log(`searched for ${str}`)
-        
-//         const data=await fetch(`http://www.omdbapi.com/?apikey=cd3e29a5&t=${str}`).then((response)=>response.json());
-        
-
-//         if(data.Response==='True')displayMovieList(data.Search);
-        
-//         likeButton.style.color="white";
-//         if(data.Response==="False")throw new Error(data.Error || "Movie not found!");
-
-       
-        
-            
-           
-            
-        
-
-//         cardImage.src=data.Poster;
-//         cardImage.alt="Failed to retrieve poster";
-    
-//         cardTitle.innerText=data.Title;
-//         cardReleaseYear.innerText=`Released in ${data.Year}`;
-        
-//         card.hidden=false;
-//         cardContainer.style.borderStyle="solid";
-//         cardContainer.style.borderColor="white";
-//         cardViewDetails.innerText="View Details";
-//         modalContent.innerText=`Genre: ${data.Genre} \n \n IMDB Ratings :${data.imdbRating || "Not rated"} \n \n Plot: ${data.Plot}`;
-    
-//         const title=document.querySelector("#card-title").innerText;
-//         // let currList = JSON.parse(localStorage.getItem("favourites")) || [];
-//         // currList.includes(title)===true?likeButton.style.color="#FAD5A5":likeButton.style.color = "white"; 
-    
-//         console.log(data);
-        
-        
-//     }
-//     catch(e){
-        
-      
-//         logs.innerText="Could not find any suitable results";
-//         logs.style.color="white";
-        
-//         logs.hidden=false;
-            
-        
-//     }
-    
-
-// }
-
+const grid=document.querySelector(".grid");
 const populateFavourites=async()=>{
     const arr = JSON.parse(localStorage.getItem("favourites")) || [];
     
@@ -126,7 +69,8 @@ const populateFavourites=async()=>{
 }
 populateFavourites();
 const loadMovies=async(searchTerm)=>{
-    const data=await fetch(`http://www.omdbapi.com/?s=${searchTerm}&page=1&apikey=cd3e29a5`).then((response)=>response.json());
+    try{
+        const data=await fetch(`http://www.omdbapi.com/?s=${searchTerm}&page=1&apikey=cd3e29a5`).then((response)=>response.json());
         
 
         if(data.Response==='True'){
@@ -135,10 +79,14 @@ const loadMovies=async(searchTerm)=>{
         }
         else{
             contentDiv.hidden=true;
-            movieGrid.hidden=true;
+            
             logs.hidden=false;
             logs.innerText=data.Error;
         }
+    }
+   catch(e){
+     console.log(e.Error);
+   }
         
         
 }
@@ -152,9 +100,7 @@ const findMovies=()=>{
         
         loadMovies(searchTerm);
     }
-    else{
-       
-    }
+    
 
 }
 const displayMovieList = (movies) => {
@@ -164,46 +110,59 @@ const displayMovieList = (movies) => {
     let currList=JSON.parse(localStorage.getItem("favourites")) || [];
     movies.forEach((movie) => {
         let moviePoster = movie.Poster !== "N/A" ? movie.Poster : "not_found.jpeg";
-         let cardHTML=``;
-        currList.includes(movie.imdbID)?cardHTML = `
+         
+        let cardHTML=``;
+        currList.includes(movie.imdbID)?
+        cardHTML=`
             <div class="movie-card">
+            <div class="details-btn-container">
+            <i class=" material-icons details-btn " onclick="viewDetailsButton('${movie.imdbID}')">info</i>
+            </div>
+            
                    <div id="like-container" >
-                       <i class="material-icons"  class="like-button yellow-color" onclick="likeButton('${movie.imdbID}' ,this)">favorite</i>
+                       <i class="material-icons like-button yellow-color" id="${movie.imdbID}" onclick="likeButton('${movie.imdbID}' ,this)">favorite</i>
 
                     </div>
                 <img class="movie-card-img" src="${moviePoster}" alt="Movie Poster">
                 <div class="movie-card-info">
-                   
+                        
                         <h3>${movie.Title}</h3>
                         <p>Year: ${movie.Year}</p>
-                        <button class="details-btn" onclick="viewDetailsButton('${movie.imdbID}')">View Details</button>
+                        
                     
                     
                 </div>
             </div>
-        `:
-        cardHTML = `
-            <div class="movie-card">
+        `:cardHTML=`
+        <div class="movie-card">
+            <div class="details-btn-container">
+            <i class=" material-icons details-btn " onclick="viewDetailsButton('${movie.imdbID}')">info</i>
+            </div>
+            
                    <div id="like-container" >
-                       <i class="material-icons"  class="like-button white-color" onclick="likeButton('${movie.imdbID}' ,this)">favorite</i>
+                       <i class="material-icons like-button white-color" id="${movie.imdbID}" onclick="likeButton('${movie.imdbID}' ,this)">favorite</i>
 
                     </div>
                 <img class="movie-card-img" src="${moviePoster}" alt="Movie Poster">
                 <div class="movie-card-info">
-                    <h3>${movie.Title}</h3>
-                    <p>Year: ${movie.Year}</p>
-                    <button class="details-btn" onclick="viewDetailsButton('${movie.imdbID}')">View Details</button>
+                        
+                        <h3>${movie.Title}</h3>
+                        <p>Year: ${movie.Year}</p>
+                        
+                    
+                    
                 </div>
             </div>
-        `;
-
-         
+         `
+        
+        
 
         movieGrid.innerHTML += cardHTML;
     });
 
     contentDiv.appendChild(movieGrid);
 };
+
 
 
 const title1 = document.getElementById('title1');
@@ -247,6 +206,9 @@ const viewDetailsButton = async (movieID) => {
             }
             
         } else {
+            con
+            logs.hidden=false;
+            logs.innerHTML=data.Error;
             console.error("Movie details not found:", data.Error);
         }
     } catch (error) {
@@ -309,5 +271,6 @@ wholeViewport.addEventListener("click",()=>{
     if(!favouritesList.hidden)favouritesList.hidden=true;
 })
 
-findMovies();
-
+document.addEventListener("DOMContentLoaded",()=>{
+    findMovies();
+})
