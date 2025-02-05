@@ -418,6 +418,7 @@ body {
     align-items: center;
     justify-content: center;
     
+    
 }
 
 
@@ -429,7 +430,7 @@ body {
     border-radius: 2rem;
     text-align: center;
     box-shadow: 0px 1px 0px 1px var(--title-yellow);
-   
+    margin: 1rem;
     transition: transform 0.2s ease-in-out;
     color: var(--text-color);
     height:35vh;
@@ -465,4 +466,118 @@ body {
 
 .details-btn:hover {
     background-color: #ffae42;
+}
+
+
+@media (max-width: 1024px) {
+    .title {
+        height: 12vh;
+        justify-content: center;
+    }
+
+    .title p {
+        font-size: 2rem;
+        margin-left: 5vw;
+    }
+
+    .search-wrapper {
+        flex-direction: column;
+        margin-top: 5vh;
+    }
+
+    #query-string {
+        width: 50vw;
+        font-size: 1rem;
+    }
+
+    #search-button {
+        width: 8vw;
+        margin-left: 0;
+        margin-top: 1rem;
+    }
+
+    .movie-grid {
+        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+        gap: 1.5rem;
+        margin: 3rem;
+    }
+
+    .movie-card {
+        width: 20vw;
+        height: 30vh;
+        margin: 2rem;
+    }
+}
+
+
+@media (max-width: 768px) {
+    .title {
+        flex-direction: column;
+        height: auto;
+        padding: 1rem 0;
+        align-items: center;
+        text-align: center;
+    }
+
+    .title p {
+        font-size: 1.5rem;
+        margin-left: 0;
+    }
+
+    .center-a-div,
+    .container {
+        align-items: center;
+        margin: 1vh;
+    }
+
+    .search-wrapper {
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        margin-left: 0;
+        margin-right: 0;
+    }
+
+    #query-string {
+        width: 60vw;
+        font-size: 1rem;
+    }
+
+    #search-button {
+        width: 15vw;
+        margin-left: 0;
+        margin-top: 1rem;
+    }
+
+    .favourites-list {
+        width: 90%;
+        max-height: 50vh;
+        margin-right: 2vw;
+    }
+
+    .favourites-list .favourites-list-item {
+        width: 100%;
+        font-size: 0.9rem;
+    }
+
+    .movie-grid {
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        gap: 1rem;
+        margin: 2rem;
+    }
+
+    .movie-card {
+        width: 80%;
+        height: auto;
+        padding: 1rem;
+    }
+
+    .movie-card-img {
+        height: 15vh;
+    }
+
+    .details-btn {
+        padding: 6px 10px;
+        font-size: 0.9rem;
+    }
 }
