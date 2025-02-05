@@ -112,14 +112,14 @@ const displayMovieList = (movies) => {
         currList.includes(movie.imdbID)?
         cardHTML=`
             <div class="movie-card">
-            <div class="details-btn-container">
-            <i class=" material-icons details-btn " onclick="viewDetailsButton('${movie.imdbID}')">info</i>
-            </div>
             
-                   <div id="like-container" >
+            <i class=" material-icons details-btn " onclick="viewDetailsButton('${movie.imdbID}')">info</i>
+            
+            
+                   
                        <i class="material-icons like-button yellow-color" id="${movie.imdbID}" onclick="likeButton('${movie.imdbID}' ,this)">favorite</i>
 
-                    </div>
+                    
                 <img class="movie-card-img" src="${moviePoster}" alt="Movie Poster">
                 <div class="movie-card-info">
                         
@@ -133,14 +133,14 @@ const displayMovieList = (movies) => {
         `:cardHTML=`
         <div class="movie-card">
             <div class="movie-card-header">
-                    <div class="details-btn-container">
+                    
                     <i class=" material-icons details-btn " onclick="viewDetailsButton('${movie.imdbID}')">info</i>
-                    </div>
+                    
             
-                   <div id="like-container" >
+                 
                        <i class="material-icons like-button white-color" id="${movie.imdbID}" onclick="likeButton('${movie.imdbID}' ,this)">favorite</i>
 
-                    </div>
+                    
             </div>
             
                 <img class="movie-card-img" src="${moviePoster}" alt="Movie Poster">

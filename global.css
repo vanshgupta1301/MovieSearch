@@ -436,6 +436,7 @@ body {
 }
 .movie-card-header{
     margin: 8px;
+   
 }
 .movie-card:hover {
     transform: scale(1.05);
@@ -446,6 +447,7 @@ body {
     height: 20vh;
     
     border-radius: 5px;
+    margin-top: 2rem;
 }
 
 .movie-card-info {
