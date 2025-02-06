@@ -1,7 +1,7 @@
 //class selectors
 const contentDiv = document.querySelector(".content");
 const favouritesList=document.querySelector(".favourites-list");
-const mobileTray=document.querySelector(".mobile-tray");
+
 const grid=document.querySelector(".grid");
 
 //id selectors
@@ -274,8 +274,25 @@ document.addEventListener("DOMContentLoaded",()=>{
     findMovies();
 })
 
-const menubar=document.querySelector("#menu");
-mobileTray.addEventListener("click",()=>{
+const navbar=document.querySelector(".sidenav");
+const openNav=()=>{
+   
+    if(isHidden(navbar)){
+        setUnhidden(navbar);
+    }
+    
+}
+const closeNav=()=>{
+    
+    if(!isHidden(navbar)){
+        setHidden(navbar);
+    }
+}
+const mobileTray=document.querySelector(".mobile-tray");
+mobileTray.addEventListener("click",openNav);
 
-    setUnhidden(menubar);
-})
+const menuCloseButton=document.querySelector(".menu-close-btn");
+menuCloseButton.addEventListener("click",closeNav);
+
+const sidenavFavouritesButton=document.querySelector("#sidenav-favourites");
+
