@@ -1,38 +1,31 @@
-
-
-// let favourites = JSON.parse(localStorage.getItem("favourites")) || [];
-
-const logs=document.querySelector("#logs");
-
-// const card=document.querySelector(".card");
-// const cardImage=document.querySelector("#card-image");
-// const cardTitle=document.querySelector("#card-title");
-// const cardReleaseYear=document.querySelector("#card-release-year");
-const cardViewDetails=document.querySelector("#view-details");
-const modalContent=document.querySelector("#modal-content");
-// const cardContainer=document.querySelector(".card");
-// const viewDetailsButton=document.querySelector("#view-details")
-const modalElement=document.querySelector("#modal");
-const closeModalButton=document.querySelector("#close-modal-button");
-// const likeButton=document.querySelector("#like-button");
-// const favouriteContent = document.querySelector(".favourites");
-const queryString=document.querySelector("#query-string");
-const searchButton=document.querySelector("#search-button");
-// const favouriteHeading=document.querySelector('#favourite-heading');
-// const modeButton=document.querySelector("#mode");
-
+//class selectors
 const contentDiv = document.querySelector(".content");
 const favouritesList=document.querySelector(".favourites-list");
-
 const mobileTray=document.querySelector(".mobile-tray");
 const grid=document.querySelector(".grid");
+
+//id selectors
+const logs=document.querySelector("#logs");
+const cardViewDetails=document.querySelector("#view-details");
+const modalContent=document.querySelector("#modal-content");
+const modalElement=document.querySelector("#modal");
+const closeModalButton=document.querySelector("#close-modal-button");
+const queryString=document.querySelector("#query-string");
+const searchButton=document.querySelector("#search-button");
+
+//helper functions
+const isHidden=(ele)=>{
+  return ele.hidden;
+}
+const setHidden=(ele)=>{
+    ele.hidden=true;
+}
+const setUnhidden=(ele)=>{
+    ele.hidden=false;
+}
+
+
 const populateFavourites=async()=>{
-    try {
-        
-    } catch (error) {
-        console.log(error.Error);
-        
-    }
     const arr = JSON.parse(localStorage.getItem("favourites")) || [];
     
     favouritesList.innerHTML="";
@@ -133,8 +126,8 @@ const displayMovieList = (movies) => {
                 <img class="movie-card-img" src="${moviePoster}" alt="Movie Poster">
                 <div class="movie-card-info">
                         
-                        <h3>${movie.Title}</h3>
-                        <p>Year: ${movie.Year}</p>
+                        <h4>${movie.Title}(${movie.Year})</h4>
+                        
                         
                     
                     
@@ -156,8 +149,7 @@ const displayMovieList = (movies) => {
                 <img class="movie-card-img" src="${moviePoster}" alt="Movie Poster">
                 <div class="movie-card-info">
                         
-                        <h3>${movie.Title}</h3>
-                        <p>Year: ${movie.Year}</p>
+                        <h4>${movie.Title}(${movie.Year})</h4>
                         
                     
                     

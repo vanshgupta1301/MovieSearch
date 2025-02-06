@@ -337,6 +337,7 @@ body {
   
 }
 .favourites-list .favourites-list-item{
+    z-index: -1;
    background-color: var(--secondary-bg);
    padding:0.5rem;
    z-index:10;
@@ -344,6 +345,7 @@ body {
    color:var(--text-color);
    cursor:pointer;
    transition: background-color 200ms ease;
+
    
   
 
