@@ -29,6 +29,9 @@ const populateFavourites=async()=>{
     const arr = JSON.parse(localStorage.getItem("favourites")) || [];
     favouritesList.innerHTML="";
 
+    const sidenavFavouritesContent = document.querySelector("#sidenav-favourites-content");
+    sidenavFavouritesContent.innerHTML = "";
+
     if(!arr || arr.length===0){
         let listItem=document.createElement("div");
         listItem.dataset.id="no_favourites_msg";
@@ -41,6 +44,7 @@ const populateFavourites=async()=>{
        </div>
      `;
      favouritesList.appendChild(listItem);
+     sidenavFavouritesContent.appendChild(noFavItem.cloneNode(true));
     }
     for(let i=0;i<arr.length;i++){
         let listItem=document.createElement("div");
@@ -58,6 +62,10 @@ const populateFavourites=async()=>{
               </div>
             `;
             favouritesList.appendChild(listItem);
+
+            const clonedItem = listItem.cloneNode(true);
+            
+            sidenavFavouritesContent.appendChild(clonedItem);
         }
         catch(e){
             console.log(error);
@@ -155,6 +163,7 @@ const displayMovieList = (movies) => {
     contentDiv.appendChild(movieGrid);
 };
 
+//TODO:Display page with only one card side by side with its whole description
 searchButton.addEventListener("click",()=>{
     
         let searchTerm=(queryString.value).trim();
@@ -266,7 +275,7 @@ favouritesList.addEventListener("hover",()=>{
 })
 
 const wholeViewport=document.querySelector(".center-a-div");
-wholeViewport.addEventListener("click",()=>{
+wholeViewport.addEventListener("mouseover",()=>{
     if(!isHidden(favouritesList))setHidden(favouritesList);
 })
 
@@ -296,3 +305,9 @@ menuCloseButton.addEventListener("click",closeNav);
 
 const sidenavFavouritesButton=document.querySelector("#sidenav-favourites");
 
+
+const sidenavFavouritesContent=document.querySelector("#sidenav-favourites-content");
+
+sidenavFavouritesContent.addEventListener("click",()=>{
+    
+})
