@@ -27,8 +27,8 @@ const setUnhidden=(ele)=>{
 
 const populateFavourites=async()=>{
     const arr = JSON.parse(localStorage.getItem("favourites")) || [];
-    
     favouritesList.innerHTML="";
+
     if(!arr || arr.length===0){
         let listItem=document.createElement("div");
         listItem.dataset.id="no_favourites_msg";
@@ -66,12 +66,13 @@ const populateFavourites=async()=>{
     }
 
 }
+
+//initial call
 populateFavourites();
+
 const loadMovies=async(searchTerm)=>{
     try{
         const data=await fetch(`http://www.omdbapi.com/?s=${searchTerm}&page=1&apikey=cd3e29a5`).then((response)=>response.json());
-        
-
         if(data.Response==='True'){
             displayMovieList(data.Search);
             console.log(data);
@@ -83,8 +84,6 @@ const loadMovies=async(searchTerm)=>{
    catch(e){
      console.log(e.Error);
    }
-        
-        
 }
 const findMovies=()=>{
     let searchTerm=(queryString.value).trim();
@@ -96,8 +95,6 @@ const findMovies=()=>{
         
         loadMovies(searchTerm);
     }
-    
-
 }
 const displayMovieList = (movies) => {
     contentDiv.innerHTML = ""; 
@@ -105,8 +102,7 @@ const displayMovieList = (movies) => {
     movieGrid.classList.add("movie-grid");
     let currList=JSON.parse(localStorage.getItem("favourites")) || [];
     movies.forEach((movie) => {
-        let moviePoster = movie.Poster !== "N/A" ? movie.Poster : "not_found.jpeg";
-         
+        let moviePoster = movie.Poster !== "N/A" ? movie.Poster : "not_found.jpeg"; 
         let cardHTML=``;
         currList.includes(movie.imdbID)?
         cardHTML=`
@@ -127,10 +123,7 @@ const displayMovieList = (movies) => {
                 <div class="movie-card-info">
                         
                         <h4>${movie.Title}(${movie.Year})</h4>
-                        
-                        
-                    
-                    
+ 
                 </div>
             </div>
         `:cardHTML=`
@@ -156,9 +149,6 @@ const displayMovieList = (movies) => {
                 </div>
             </div>
          `
-        
-        
-
         movieGrid.innerHTML += cardHTML;
     });
 
@@ -214,18 +204,17 @@ const viewDetailsButton = async (movieID) => {
                 
             `;
 
-            modalElement.hidden = false; 
+            setUnhidden(modalElement);
 
             const closeModalButton=document.getElementById("close-modal-button")
             if(closeModalButton){
                 closeModalButton.addEventListener("click", () => {
-                    modalElement.hidden = true;
+                    setHidden(modalElement);
                 });
             }
             
         } else {
-            con
-            logs.hidden=false;
+            setUnhidden(logs);
             logs.innerHTML=data.Error;
             console.error("Movie details not found:", data.Error);
         }
@@ -267,19 +256,18 @@ document.querySelectorAll(".details-btn").forEach(button => {
 const myFavouritesButton=document.querySelector("#my-favourites");
 
 myFavouritesButton.addEventListener("mouseover",()=>{
-    favouritesList.hidden?favouritesList.hidden=false:favouritesList.hidden=true;
+    isHidden(favouritesList)?setUnhidden(favouritesList):setHidden(favouritesList);
 });
 myFavouritesButton.addEventListener("click",()=>{
-    favouritesList.hidden?favouritesList.hidden=false:favouritesList.hidden=true;
+    isHidden(favouritesList)?setUnhidden(favouritesList):setHidden(favouritesList);
 });
-
 favouritesList.addEventListener("hover",()=>{
-  favouritesList.hidden=false;
+  setUnhidden(favouritesList);
 })
 
 const wholeViewport=document.querySelector(".center-a-div");
 wholeViewport.addEventListener("click",()=>{
-    if(!favouritesList.hidden)favouritesList.hidden=true;
+    if(!isHidden(favouritesList))setHidden(favouritesList);
 })
 
 document.addEventListener("DOMContentLoaded",()=>{
@@ -289,6 +277,5 @@ document.addEventListener("DOMContentLoaded",()=>{
 const menubar=document.querySelector("#menu");
 mobileTray.addEventListener("click",()=>{
 
-    
-    menubar.hidden=false;
+    setUnhidden(menubar);
 })
