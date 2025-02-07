@@ -255,8 +255,7 @@ const likeButton = (movieID, buttonElement) => {
 
 document.querySelectorAll(".details-btn").forEach(button => {
     button.addEventListener("click", (e) => {
-        console.log("hello");
-        
+       
         const movieID = e.target.getAttribute("data-id");  
         openModal(movieID);  
     });
